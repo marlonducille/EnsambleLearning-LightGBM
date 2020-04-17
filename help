@@ -1,0 +1,52 @@
+Light GBM is a fast, distributed, high-performance gradient boosting framework based on decision tree algorithm, used for ranking, classification and many other machine learning tasks.
+
+Since it is based on decision tree algorithms, it splits the tree leaf wise with the best fit whereas other boosting algorithms split the tree depth wise or level wise rather than leaf-wise. So when growing on the same leaf in Light GBM, the leaf-wise algorithm can reduce more loss than the level-wise algorithm and hence results in much better accuracy which can rarely be achieved by any of the existing boosting algorithms. Also, it is surprisingly very fast, hence the word ‘Light’.
+
+Given below is a diagrammatic representation by the makers of the Light GBM
+
+
+
+
+
+Leaf wise splits lead to increase in complexity and may lead to overfitting and it can be overcome by specifying another parameter max-depth which specifies the depth to which splitting will occur.
+
+Below, we will see the steps to install Light GBM and run a model using it. We will be comparing the results with XGBOOST results to prove that you should take Light GBM in a ‘LIGHT MANNER’.
+
+
+
+ADVANTAGES OF LIGHT GBM
+Faster training speed and higher efficiency: Light GBM use histogram based algorithm i.e it buckets continuous feature values into discrete bins which fasten the training procedure.
+Lower memory usage: Replaces continuous values to discrete bins which result in lower memory usage.
+Better accuracy than any other boosting algorithm: It produces much more complex trees by following leaf wise split approach rather than a level-wise approach which is the main factor in achieving higher accuracy. However, it can sometimes lead to overfitting which can be avoided by setting the max_depth parameter.
+Compatibility with Large Datasets: It is capable of performing equally good with large datasets with a significant reduction in training time as compared to XGBOOST.
+Parallel learning supported.
+
+
+I guess you must have got excited about the advantages of Light GBM. Let us now proceed to install the library into our system.
+
+Now before we dive head first into building our first Light GBM model, let us look into some of the parameters of Light GBM to have an understanding of its underlying procedures.
+
+
+
+IMPORTANT PARAMETERS OF LIGHT GBM
+task : default value = train ; options = train , prediction ; Specifies the task we wish to perform which is either train or prediction.
+application: default=regression, type=enum, options= options :
+regression : perform regression task
+binary : Binary classification
+multiclass: Multiclass Classification
+lambdarank : lambdarank application
+data: type=string; training data , LightGBM will train from this data
+num_iterations: number of boosting iterations to be performed ; default=100; type=int
+num_leaves : number of leaves in one tree ; default = 31 ; type =int
+device : default= cpu ; options = gpu,cpu. Device on which we want to train our model. Choose GPU for faster training.
+max_depth: Specify the max depth to which tree will grow. This parameter is used to deal with overfitting.
+min_data_in_leaf: Min number of data in one leaf.
+feature_fraction: default=1 ; specifies the fraction of features to be taken for each iteration
+bagging_fraction: default=1 ; specifies the fraction of data to be used for each iteration and is generally used to speed up the training and avoid overfitting.
+min_gain_to_split: default=.1 ; min gain to perform splitting
+max_bin : max number of bins to bucket the feature values.
+min_data_in_bin : min number of data in one bin
+num_threads: default=OpenMP_default, type=int ;Number of threads for Light GBM.
+label : type=string ; specify the label column
+categorical_feature : type=string ; specify the categorical features we want to use for training our model
+num_class: default=1 ; type=int ; used only for multi-class classification
